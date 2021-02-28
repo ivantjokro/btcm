@@ -6,7 +6,7 @@ namespace btcm.Common.Caching
     public class CacheProvider : ICacheProvider
     {
 
-        IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public CacheProvider(IMemoryCache memoryCache)
         {

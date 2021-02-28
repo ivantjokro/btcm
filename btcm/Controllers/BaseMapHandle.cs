@@ -1,7 +1,5 @@
 ﻿using btcm.Common;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
