@@ -34,7 +34,7 @@ namespace btcm.Controllers
             else {
                 ViewBag.ShowEmptyTransactions = true;
 
-                var key = string.Format("{0}-{1}", input.BlockNumber, input.Address);
+                var key = string.Format("{0}", input.BlockNumber);
 
                 IEnumerable<Transaction> transactions =  _cacheProvider.Get(key, () => _createCommand.Handle(input?.ConvertHexFromBlockNumber()));
 
