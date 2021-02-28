@@ -1,0 +1,20 @@
+﻿
+@model Transaction
+
+    <div class="transaction-header">Transaction Details</div>
+    <div class="container-block">
+        <div class="transaction-label">Block Hash</div>
+        <div>@Model.BlockHash</div>
+        <div class="transaction-label">Block Number</div>
+        <div>@Model.BlockNumber</div>
+        <div class="transaction-label">Gas</div>
+        <div>@Model.Gas</div>
+        <div class="transaction-label">Hash</div>
+        <div>@Model.Hash</div>
+        <div class="transaction-label">From</div>
+        <div>@Model.From</div>
+        <div class="transaction-label">To</div>
+        <div>@Model.To</div>
+        <div class="transaction-label">Value</div>
+        <div>@Model.Value</div>
+    </div>

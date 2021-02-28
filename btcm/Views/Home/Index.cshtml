@@ -1,0 +1,68 @@
+﻿
+@using static btcm.Utilities
+@model IEnumerable<Transaction>
+
+
+<div class="text-center">
+    @await Html.PartialAsync("~/Views/feature/Search/Search.cshtml", new SearchInput())
+
+    @if (Model != null)
+    {
+        <div class="search-result">
+            <table>
+                <thead>
+                    <tr class="bg-primary-header">
+                        <th>Block Hash</th>
+                        <th>Block Number</th>
+                        <th>Gas</th>
+                        <th>Hash</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int i = 0;}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a id="link-@i" href="#inline-@i" > @Utilities.ShortenText(@item.BlockHash) </a>
+                                <script>
+                                $(document).ready(function () {
+                                    $("#link-@i").fancybox({
+                                        'transitionIn': 'none',
+                                        'transitionOut': 'none',
+                                        'scrolling': 'no'
+                                    });
+                                });
+                                </script>
+                                <div style="display: none;">
+                                    <div id="inline-@i" style="overflow:auto;width:800px;">
+                                        @await Html.PartialAsync("~/Views/feature/Block/LightBox.cshtml", @item)
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@Utilities.ShortenText(@item.BlockNumber)</td>
+                            <td>@Utilities.ShortenText(@item.Gas)</td>
+                            <td>@Utilities.ShortenText(@item.Hash).</td>
+                            <td>@Utilities.ShortenText(@item.From)</td>
+                            <td>@Utilities.ShortenText(@item.To)</td>
+                            <td>@Utilities.ShortenText(@item.Value)</td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        @if (ViewBag.ShowEmptyTransactions != null && ViewBag.ShowEmptyTransactions)
+        {
+            <div>
+                Search not found.
+            </div>
+        }
+    }
+</div>

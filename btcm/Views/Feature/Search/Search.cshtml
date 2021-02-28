@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Etherium Transaction Search";
+}
+@model SearchInput
+
+<div class="text-center">
+    <h1 class="display-4">Etherium Transaction Search</h1>
+
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <div class="error-message">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div>
+                    @Html.ValidationMessageFor(c => c.BlockNumber, "", new { @class = "warning-message", @style = "color:red;" })
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(c => c.Address, "", new { @class = "warning-message", @style = "color:red;" })
+                </div>
+            }
+        </div>
+        <div class="container-search-form">
+            @Html.AntiForgeryToken()
+            @Html.TextBoxFor(model => model.BlockNumber, new { placeholder="Block Number" })
+            @Html.TextBoxFor(model => model.Address, new { placeholder = "Address" })
+            <button type="submit">Search</button>
+        </div>
+    }
+</div>
